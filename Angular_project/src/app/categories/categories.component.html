@@ -1,0 +1,30 @@
+<div class="body">
+<div class="search">
+    <div class="mot">Mettez-vous au défi avec nos quiz technique</div>
+    <div class="mot1">Choisissez parmi +100 tests techniques et faites-vous remarquer. Valorisez vos compétences dès maintenant et obtenez un certificat !</div>
+    <div class="input-group md-form form-sm form-2 pl-0 col-md-4" style="margin-left:auto;margin-right:auto">
+        <input class="form-control my-0 py-1 amber-border" type="text" placeholder="Cherchez des tests" aria-label="Search">
+        <div class="input-group-append">
+          <button class="input-group-text amber lighten-3" id="basic-text1">RECHERCHER</button>
+        </div>
+      </div>
+</div>
+<div class="container lg padding-20px-tb">
+
+        <div class="row">
+            <div *ngFor="let categorie of Categories" class="col-md-4 cat border-left ">
+                <div>
+                    <h3>{{categorie.titre}}</h3>
+                    <hr class="solid">
+                    <div class="testnumber"> 3 Tests</div>
+                </div>
+                <hr class="solid">
+                <div class="card categories-card">
+                    
+                    <button  (click)="gettestsbyidcategorie(categorie.id)" class="btn btn-secondary ">Voir les Tests</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

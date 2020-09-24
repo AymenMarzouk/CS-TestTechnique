@@ -1,0 +1,37 @@
+<div class="body">
+<div class="container py-5">
+    <div class="row text-center text-white mb-5">
+        
+        <div class="col-lg-7 mx-auto" style="margin-top:15px;color:black">
+            <h1 class="display-4">Liste des Tests</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <!-- List group-->
+            <ul class="list-group shadow">
+                <!-- list group item-->
+                <li *ngFor="let test of Tests" class="list-group-item">
+                    <!-- Custom content-->
+                    <div class="media align-items-lg-center flex-column flex-lg-row p-3">
+                        <div class="media-body order-2 order-lg-1">
+                            <h5 class="mt-0 font-weight-bold mb-2">{{test.titre}}</h5>
+                            <p class="font-italic text-muted mb-0 small">{{test.description}}</p>
+                            <div class="d-flex align-items-center justify-content-between mt-1">
+                                <h6 class="font-weight-bold my-2"><img src="/assets/images/questionmark.png" alt="image">{{test.nb_questions}} Questions <img src="/assets/images/clock.png" alt="image">{{test.nb_minutes}} Minutes</h6>
+                            </div>
+                        </div>
+                        <div class="ml-lg-5 order-1 order-lg-2 ">
+                            <button (click)="getquestionsbyidtest(test.id)" class="btn-pill">
+                                <span>Passer le Test</span>
+                              </button>
+                        </div>
+                        
+                    </div> <!-- End -->
+                </li> <!-- End -->
+               
+            </ul> <!-- End -->
+        </div>
+    </div>
+</div>
+</div>
