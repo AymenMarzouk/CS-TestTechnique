@@ -20,6 +20,7 @@ class TestSerializer(ModelSerializer):
         fields = (
             'id', 'titre', 'description', 'nb_questions', 'nb_minutes', 'categorie'
         )
+        depth=1
 class UtilisateurSerializer(ModelSerializer):
     class Meta:
         model = Utilisateur

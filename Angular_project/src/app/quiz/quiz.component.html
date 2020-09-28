@@ -1,4 +1,4 @@
- <br>
+ <!--<br>
  <br>
  <br>
  <div  *ngFor="let test of Tests" class="container mt-5 supreme-container">
@@ -40,3 +40,75 @@
         </div>
     </div>
 </div>
+
+-->
+
+<!-- Start Page Title Area -->
+<div class="page-title-area item-bg2">
+    <div class="container">
+        <div class="page-title-content">
+            <h2>Tests</h2>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li>Tests</li>
+            </ul>
+        </div>
+    </div>
+  </div>
+<!-- End Page Title Area -->
+
+<section class="services-area bg-f2f6f9 ptb-110">
+	
+    <div class="social-box">
+        <div class="container">
+             <div class="row">
+
+                <div *ngFor="let test of Tests" class="container mt-5 supreme-container">
+			    
+					<div class="box">
+						
+						<div class="box-title">
+                         
+                            <h4>{{test.titre}}</h4><span  style="float: right">({{compteurQuestion}} of {{test.nb_questions}})</span>
+						</div>
+						<div class="box-text">
+                            <div  class="question bg-white p-3 border-bottom">
+                                <div *ngIf="beforeQ" class="d-flex flex-row align-items-center question-title">
+                                    <h3 class="">{{test.description}}</h3>
+                                </div>
+                                
+                                <div *ngIf="!beforeQ" class="d-flex flex-row align-items-center question-title">
+                                    <h3 class="text-danger">Q.</h3>
+                                    <h5 class="mt-1 ml-2" disabled="true">{{Questions[compteurQuestion-1].texte}}</h5>
+                                </div>
+                                <div *ngIf="!beforeQ">
+                                <div *ngFor="let reponse of Reponses" class="ans ml-2">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="{{reponse.id}}">
+                                        <label class="custom-control-label" for="{{reponse.id}}">{{reponse.texte}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        
+                        <div *ngIf="!beforeQ" class="d-flex flex-row justify-content-between align-items-center p-3 bg-white">
+                            <button class="btn btn-primary d-flex align-items-center btn-danger" type="button">
+                                <i class="fa fa-angle-left mt-1 mr-1"></i>&nbsp;previous</button>
+                                <button class="btn btn-primary border-success align-items-center btn-success" type="button">Next<i class="fa fa-angle-right ml-2"></i></button>
+                            </div>
+                            <div *ngIf="beforeQ" class="d-flex flex-row justify-content-between align-items-center p-3 bg-white">
+                                    <button (click)="passertest()" class="btn btn-primary border-success align-items-center btn-success" type="button">Passer le test<i class="fa fa-angle-right ml-2"></i></button>
+                                </div>
+						
+					 </div>
+					 
+			</div>
+
+            
+
+                </div>
+                </div>
+                </div>
+
+</section>

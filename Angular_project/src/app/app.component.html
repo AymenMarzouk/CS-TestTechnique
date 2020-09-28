@@ -22,7 +22,7 @@
                <a class="nav-item dropdown">
                  <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false" *ngIf="(currentuserkey$|async) as username">
-                   <i class="fas fa-user"></i> {{username}} </a>
+                   <i class="fas fa-user"></i> {{currentUser.user.email}} </a>
                  <div class="btn btn-secondary dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4" aria-haspopup="true" aria-expanded="false">
                    <a class="dropdown-item " href="#"><i class="fas fa-id-card" style="padding: 15px;"></i> My account</a>
                    <a class="dropdown-item" href="#"><i class="fas fa-file-alt" style="padding: 15px;"></i>My Tests</a>

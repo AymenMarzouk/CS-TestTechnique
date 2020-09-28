@@ -1,30 +1,80 @@
-<div class="body">
-<div class="search">
-    <div class="mot">Mettez-vous au défi avec nos quiz technique</div>
-    <div class="mot1">Choisissez parmi +100 tests techniques et faites-vous remarquer. Valorisez vos compétences dès maintenant et obtenez un certificat !</div>
-    <div class="input-group md-form form-sm form-2 pl-0 col-md-4" style="margin-left:auto;margin-right:auto">
-        <input class="form-control my-0 py-1 amber-border" type="text" placeholder="Cherchez des tests" aria-label="Search">
-        <div class="input-group-append">
-          <button class="input-group-text amber lighten-3" id="basic-text1">RECHERCHER</button>
-        </div>
-      </div>
-</div>
-<div class="container lg padding-20px-tb">
-
-        <div class="row">
-            <div *ngFor="let categorie of Categories" class="col-md-4 cat border-left ">
-                <div>
-                    <h3>{{categorie.titre}}</h3>
-                    <hr class="solid">
-                    <div class="testnumber"> 3 Tests</div>
-                </div>
-                <hr class="solid">
-                <div class="card categories-card">
-                    
-                    <button  (click)="gettestsbyidcategorie(categorie.id)" class="btn btn-secondary ">Voir les Tests</button>
-                </div>
-            </div>
-
+<!-- Start Page Title Area -->
+<div class="page-title-area item-bg2">
+    <div class="container">
+        <div class="page-title-content">
+            <h2>Tests</h2>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li>Tests</li>
+            </ul>
         </div>
     </div>
-</div>
+  </div>
+<!-- End Page Title Area -->
+
+<!-- Start Services Area -->
+  <section class="services-area bg-f2f6f9 ptb-110">
+    <div class="container">
+        <div class="section-title">
+            <h2>Mettez-vous au défi avec nos quiz techniques</h2>
+            <p>Choisissez parmi +100 tests techniques et faites-vous remarquer. Valorisez vos compétences dès maintenant et obtenez un certificat !</p>
+        </div>
+
+
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search this blog">
+            <div class="input-group-append">
+              <button class="btn btn-secondary" style=" color: orangered" type="button">
+                <i class="fa fa-search"></i>
+              </button>
+            </div>
+          </div>
+<br><br>
+        <div class="row">
+            
+            
+            <div *ngFor="let categorie of Categories" class="col-md-4"> 
+                <div class="single-services-box">
+                    <div class="icon">
+                        <!--<i class="flaticon-income"></i>--> 
+                        
+                         3 Tests
+                     </div>
+                    
+                   
+                        <h3>{{categorie.titre}}</h3>
+                        
+                    
+                    <hr class="solid">
+                    <div class="card categories-card">
+                        
+                        <button  (click)="gettestsbyidcategorie(categorie.id)" class="btn btn-secondary ">Voir les Tests</button>
+                    </div>
+                    
+                   </div>        
+                   
+                </div>
+          
+
+           
+
+         
+      
+            </div>
+        
+    </div>
+
+    <div class="shape-img2"><img src="assets/img/shape/2.svg" alt="image"></div>
+    <div class="shape-img3"><img src="assets/img/shape/3.png" alt="image"></div>
+    <div class="shape-img4"><img src="assets/img/shape/4.svg" alt="image"></div>
+    <div class="shape-img5"><img src="assets/img/shape/5.svg" alt="image"></div>
+    <div class="shape-img7"><img src="assets/img/shape/3.png" alt="image"></div>
+    <div class="dot-shape1"><img src="assets/img/shape/dot1.png" alt="image"></div>
+    <div class="dot-shape2"><img src="assets/img/shape/dot3.png" alt="image"></div>
+    <div class="dot-shape4"><img src="assets/img/shape/dot4.png" alt="image"></div>
+    <div class="dot-shape5"><img src="assets/img/shape/dot5.png" alt="image"></div>
+    <div class="dot-shape6"><img src="assets/img/shape/dot6.png" alt="image"></div>
+</section>
+<!-- End Services Area -->
+
+

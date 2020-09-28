@@ -11,6 +11,7 @@ import { AlertComponent } from './components/alert.component';
 export class AppComponent implements OnInit{
   currentUser$: Observable<boolean>;
   currentuserkey$ : Observable<string>;
+  currentUser: any;
     constructor(
         private authenticationService: AuthenticationService,
         private router: Router,
@@ -18,7 +19,8 @@ export class AppComponent implements OnInit{
        
     ) {
      // this.currentUser = this.authenticationService.currentUser ;
-    
+     this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+   console.log(this.currentUser)
    
     }
     
