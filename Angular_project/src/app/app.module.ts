@@ -19,6 +19,8 @@ import { TestsComponent } from './tests/tests.component';
 import { QuizComponent } from './quiz/quiz.component';
 import { QuestionsService } from './services';
 import { FilterPipe} from './categories/filter.pipe';
+import { HistoriquetestComponent } from './historiquetest/historiquetest.component';
+import { ScoreComponent } from './score/score.component';
 
 @NgModule({
   imports: [
@@ -42,7 +44,9 @@ import { FilterPipe} from './categories/filter.pipe';
       CategoriesComponent,
       TestsComponent,
       QuizComponent,
-      FilterPipe 
+      FilterPipe,
+      HistoriquetestComponent,
+      ScoreComponent 
      
   ],
   providers: [

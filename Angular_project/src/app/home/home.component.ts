@@ -1,11 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { from, Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
 
-import { User } from '../models';
-import { UserService, AuthenticationService } from '../services';
+import { User} from '../models';
+
+import { UserService, AuthenticationService, TestsService } from '../services';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
+import { HistoriquetestService } from '../services/historiquetest.service';
 
 @Component({ 
     selector: 'app-home',
@@ -13,6 +15,7 @@ import { Router } from '@angular/router';
 
 export class HomeComponent implements OnInit, OnDestroy {
     currentUser: boolean;
+    Utilisateur:any= [];
     currentUserSubscription: Subscription;
     users: User[] = [];
     email : string; 
@@ -21,7 +24,8 @@ export class HomeComponent implements OnInit, OnDestroy {
         private authenticationService: AuthenticationService,
         private userService: UserService,
         private cookieService: CookieService,
-        private router: Router
+        private router: Router,
+        private usertestService:HistoriquetestService
     ) {
        // this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
             
@@ -31,6 +35,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     ngOnInit() {
         //this.loadAllUsers();
       //  this.currentUser = this.authenticationService.currentUser;
+      this.loadUtilisateurs();
      
     }
 
@@ -50,4 +55,29 @@ export class HomeComponent implements OnInit, OnDestroy {
             this.users = users;
         });
     }
+
+    gettestsbyiduser(iduser: number) {
+
+        this.router.navigate(['/utilisateur_test', iduser]); 
+       //  this.testservice.getTestsBycategorieId(id).subscribe((data: {}) => {
+       //  this.Tests=data
+      
+        //})
+        //return this.router.navigate(['/tests'],this.Tests); 
+      }
+      gettestsbyiduser1(iduser: number) {
+
+        this.router.navigate(['/score', iduser]); 
+       //  this.testservice.getTestsBycategorieId(id).subscribe((data: {}) => {
+       //  this.Tests=data
+      
+        //})
+        //return this.router.navigate(['/tests'],this.Tests); 
+      }
+
+      loadUtilisateurs() {
+        return this.usertestService.getUsers().subscribe((data: {}) => {
+          this.Utilisateur = data;
+        })
+      }
 }

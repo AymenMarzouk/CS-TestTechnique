@@ -1,0 +1,76 @@
+<!-- Start Page Title Area -->
+<div class="page-title-area item-bg2">
+    <div class="container">
+        <div class="page-title-content">
+            <h2>Tests</h2>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li>Tests</li>
+            </ul>
+        </div>
+    </div>
+  </div>
+<!-- End Page Title Area -->
+
+<section class="services-area bg-f2f6f9 ptb-110">
+	<div class="section-title">
+		<h2>Liste des Tests</h2>
+		
+	</div>
+
+	
+	<br>
+<div class="social-box">
+    <div class="container">
+     	<div class="row">
+			<div *ngFor="let testuser of Utilisateur_Tests  " class="col-lg-8  mx-auto">
+                
+                
+					<div class="box">
+						
+						<div class="box-title">
+                            <img src="/assets/images/score3.png" alt="image" style="height: 120px;padding: 10px;">
+                            <h6>votre score est :{{testuser.score}} %</h6>
+                            <div *ngIf ="testuser.score> 60 "><label style="float: right; color: green;">Success <img src="/assets/images/succes.png" alt="image" style="height: 50px;padding: 10px;"></label> </div>
+                           
+                            <div *ngIf="testuser.score=== 30"><label style="float: right; color: red;">Failed<img src="/assets/images/failed.png" alt="image" style="height: 50px;padding: 10px;"></label> </div>
+
+                            
+                            
+                        </div>
+                        <br><br><br>
+                        <h6> Pour le  :{{testuser.test.titre}}</h6>
+                        <div class="d-flex align-items-center justify-content-between mt-1" >
+                            <h9 class="font-weight-bold my-2"> 
+                            
+                            <img src="/assets/images/question.png" alt="image" style="height: 80px;padding: 10px;">{{testuser.test.nb_questions}} Questions
+                            <img src="/assets/images/time.png" alt="image" style="height: 60px;padding: 10;">{{testuser.test.nb_minutes}} Minutes	
+                            
+                            </h9>
+                          </div>
+                          <h6> Avec le nombre d'essai :{{testuser.essai_id}}</h6>
+						
+
+					
+					 </div>
+					 
+            </div>
+            <div *ngFor="let choix of Choix_Utilisateur  " class="col-lg-8  mx-auto">
+                <div class="box">
+                    
+                    <div class="box-title">
+                        <h3>le nombre de reponses corrects :{{choix.total_reponses_correctes}}</h3>
+                       
+                    </div>
+                   
+                 </div>
+                 
+        </div>
+					 
+				
+				
+		
+		</div>		
+    </div>
+</div>
+</section>
