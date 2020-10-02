@@ -25,6 +25,8 @@ class Utilisateur_Test(models.Model):
     utilisateur = models.ForeignKey(Utilisateur, on_delete=models.CASCADE)
     test = models.ForeignKey(Test, on_delete=models.CASCADE)
     score = models.IntegerField() 
+    essai_id = models.IntegerField()
+    date = models.DateField()
     #duree_s = models.IntegerField() 
     #nb_reponse_correctes = models.IntegerField() 
     class Meta:
@@ -45,5 +47,9 @@ class Choix_Utilisateur(models.Model):
     test  = models.ForeignKey(Test, on_delete=models.CASCADE)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     reponse = models.ForeignKey(Reponse, on_delete=models.CASCADE)
+    nb_reponse_correctes = models.IntegerField() 
+
     class Meta:
-        unique_together = (('utilisateur', 'test','question','reponse'),)
+        unique_together = (('utilisateur', 'test','question','reponse',),)
+
+        
