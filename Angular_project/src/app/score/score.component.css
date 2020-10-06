@@ -206,3 +206,24 @@ img {
   color: #4183D7;
   font-size: 16px;
 }
+
+.nombre{
+  content: counter(my-awesome-counter);
+  color: #fc7c49;
+  font-size: 1.5rem;
+  font-weight: bold;
+  position: absolute;
+  --size: 32px;
+  left: calc(-1 * var(--size) - 10px);
+  line-height: var(--size);
+  width: var(--size);
+  height: var(--size);
+  margin-left: 500px;
+  transform: rotate(-10deg);
+  background: rgb(158, 157, 157);
+  border-radius: 50%;
+  text-align: center;
+  box-shadow: 1px 1px 0 #999;
+}
+
+

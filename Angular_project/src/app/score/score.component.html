@@ -14,8 +14,6 @@
 
 <section class="services-area bg-f2f6f9 ptb-110">
 	<div class="section-title">
-		<h2>Liste des Tests</h2>
-		
 	</div>
 
 	
@@ -30,16 +28,14 @@
 						
 						<div class="box-title">
                             <img src="/assets/images/score3.png" alt="image" style="height: 120px;padding: 10px;">
-                            <h6>votre score est :{{testuser.score}} %</h6>
-                            <div *ngIf ="testuser.score> 60 "><label style="float: right; color: green;">Success <img src="/assets/images/succes.png" alt="image" style="height: 50px;padding: 10px;"></label> </div>
+                            <h3>votre score est : &nbsp;{{testuser.score}} %</h3> 
+                            <div *ngIf ="testuser.score> 60 "><h3><label style="float: right; color: green;">Success <img src="/assets/images/succes.png" alt="image" style="height: 60px;padding: 10px;"></label> </h3></div>
                            
-                            <div *ngIf="testuser.score=== 30"><label style="float: right; color: red;">Failed<img src="/assets/images/failed.png" alt="image" style="height: 50px;padding: 10px;"></label> </div>
+                            <div *ngIf="testuser.score=== 30"><h3><label style="float: right; color: red;">Failed<img src="/assets/images/failed.png" alt="image" style="height: 60px;padding: 10px;"></label> </h3></div>
 
-                            
-                            
                         </div>
-                        <br><br><br>
-                        <h6> Pour le  :{{testuser.test.titre}}</h6>
+                        <br><br><br> 
+                        <h6> Pour le : &nbsp;{{testuser.test.titre}}</h6>
                         <div class="d-flex align-items-center justify-content-between mt-1" >
                             <h9 class="font-weight-bold my-2"> 
                             
@@ -48,29 +44,40 @@
                             
                             </h9>
                           </div>
-                          <h6> Avec le nombre d'essai :{{testuser.essai_id}}</h6>
+                          <br>
+                          <h6> Avec le nombre d'essai : &nbsp;<label class="nombre" >{{testuser.essai_id}}</label></h6>
 						
 
 					
-					 </div>
-					 
-            </div>
-            <div *ngFor="let choix of Choix_Utilisateur  " class="col-lg-8  mx-auto">
-                <div class="box">
-                    
-                    <div class="box-title">
-                        <h3>le nombre de reponses corrects :{{choix.total_reponses_correctes}}</h3>
-                       
-                    </div>
+				
+            <div *ngFor="let choix of Choix_Utilisateur  " >
+                
+                <div class="box-title">
+                    <br>
                    
-                 </div>
+                        <h6>Réponses correctes :  &nbsp;<label class="nombre" >{{choix.total_reponses_correctes}}</label></h6>
+                        <br>
+                        <h6>Réponses incorrectes : &nbsp;<label class="nombre" >{{choix.total_reponses_correctes}}</label></h6>
+                        <br>
+                        <h6>Question non répondues: &nbsp;<label class="nombre" >{{choix.question.id}}</label></h6>
+                   
+                </div>
                  
+                    
+                   
+                
+                 
+            </div>
+					 
         </div>
 					 
-				
+    </div>
 				
 		
-		</div>		
-    </div>
+ 	
+</div>
+</div>
 </div>
 </section>
+
+

@@ -59,7 +59,7 @@
 
 <section class="services-area bg-f2f6f9 ptb-110">
 	
-    <div class="social-box">
+   <!-- <div class="social-box">
         <div class="container">
              <div class="row">
 
@@ -110,5 +110,55 @@
                 </div>
                 </div>
                 </div>
+            -->
 
+
+            <div *ngFor="let test of Tests" class="container mt-5 supreme-container">
+                <div class="privew">
+                    <div class="questionsBox">
+                        <div class="questions">{{test.titre}} <span style =" float: right;margin-right: 10px;">({{compteurQuestion}} of {{test.nb_questions}})</span></div>
+                        <div *ngIf="beforeQ" class="d-flex flex-row align-items-center question-title">
+                            <h3 class="">{{test.description}}</h3>
+                        </div>
+                        <ul class="answerList">
+                            <li>
+                                
+                                    <div  class="question bg-white p-3 border-bottom">
+                                        
+                                        
+                                        <div *ngIf="!beforeQ" class="d-flex flex-row align-items-center question-title">
+                                            <h3 class="text-danger">Q.</h3>
+                                            <h5 class="mt-1 ml-2" disabled="true">{{Questions[compteurQuestion-1].texte}}</h5>
+                                        </div>
+                                        <div *ngIf="!beforeQ">
+                                        <div *ngFor="let reponse of Reponses" class="ans ml-2">
+                                            <div class="custom-control custom-checkbox">
+                                                
+                                                <input type="checkbox" class="custom-control-input" id="{{reponse.id}}">
+                                                <label class="custom-control-label" for="{{reponse.id}}">{{reponse.texte}}</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </li>
+                           
+                            
+                        </ul>
+                        <div class="questionsRow">
+                        <div *ngIf="!beforeQ" class="d-flex flex-row justify-content-between align-items-center p-3 ">
+                            <button class="btn btn-primary d-flex align-items-center btn-danger" type="button">
+                                <i class="fa fa-angle-left mt-1 mr-1"></i>&nbsp;previous</button>
+                                <button class="btn btn-primary d-flex align-items-center btn-success"  type="button">Next<i class="fa fa-angle-right ml-2"></i></button>
+                            </div>
+                            <div *ngIf="beforeQ" class="d-flex flex-row justify-content-between align-items-center p-3 ">
+                                    <button (click)="passertest()" class="btn btn-primary border-success align-items-center btn-success" type="button">Passer le test<i class="fa fa-angle-right ml-2"></i></button>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                </div>
 </section>
+
+
+
+
