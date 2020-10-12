@@ -18,6 +18,10 @@ import { CategoriesComponent } from './categories/categories.component';
 import { TestsComponent } from './tests/tests.component';
 import { QuizComponent } from './quiz/quiz.component';
 import { QuestionsService } from './services';
+<<<<<<< HEAD
+=======
+import { FilterPipe} from './categories/filter.pipe';
+>>>>>>> 23a3f0f1a46414cd888245a48480f0974ae079e6
 import { HistoriquetestComponent } from './historiquetest/historiquetest.component';
 import { ScoreComponent } from './score/score.component';
 
@@ -43,8 +47,14 @@ import { ScoreComponent } from './score/score.component';
       CategoriesComponent,
       TestsComponent,
       QuizComponent,
+<<<<<<< HEAD
       HistoriquetestComponent,
       ScoreComponent
+=======
+      FilterPipe,
+      HistoriquetestComponent,
+      ScoreComponent 
+>>>>>>> 23a3f0f1a46414cd888245a48480f0974ae079e6
      
   ],
   providers: [

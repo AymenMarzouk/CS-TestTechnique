@@ -12,6 +12,7 @@ export class TestsComponent implements OnInit {
   Tests: any = [];
   id: number;
   constructor(
+    public categorieservice: CategorieService,
     private testservice: TestsService,
     private route: ActivatedRoute,
     private router: Router
@@ -21,6 +22,7 @@ export class TestsComponent implements OnInit {
     this.id = this.route.snapshot.params['id'];
     this.testservice.getTestsBycategorieId(this.id).subscribe((data: {}) => {
         this.Tests=data
+        
     })
     //this.Tests = this.categoriecomp.getTests();
    // this.loadTests()
@@ -32,7 +34,10 @@ loadTests() {
     this.Tests = data;
   })
 }
+
 getquestionsbyidtest(id:number){
   this.router.navigate(['/quiz', id]); 
 }
+
+
 }
