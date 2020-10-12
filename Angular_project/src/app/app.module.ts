@@ -18,6 +18,8 @@ import { CategoriesComponent } from './categories/categories.component';
 import { TestsComponent } from './tests/tests.component';
 import { QuizComponent } from './quiz/quiz.component';
 import { QuestionsService } from './services';
+import { HistoriquetestComponent } from './historiquetest/historiquetest.component';
+import { ScoreComponent } from './score/score.component';
 
 @NgModule({
   imports: [
@@ -40,7 +42,9 @@ import { QuestionsService } from './services';
       ProfileComponent,
       CategoriesComponent,
       TestsComponent,
-      QuizComponent
+      QuizComponent,
+      HistoriquetestComponent,
+      ScoreComponent
      
   ],
   providers: [

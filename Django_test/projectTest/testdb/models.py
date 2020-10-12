@@ -1,5 +1,5 @@
 from django.db import models
-
+from datetime import datetime  
 # Create your models here.
 class Categorie(models.Model):
     titre = models.CharField(max_length=80)
@@ -25,10 +25,15 @@ class Utilisateur_Test(models.Model):
     utilisateur = models.ForeignKey(Utilisateur, on_delete=models.CASCADE)
     test = models.ForeignKey(Test, on_delete=models.CASCADE)
     score = models.IntegerField() 
+    date = models.DateTimeField(default=datetime.now(), blank=True)
+    flagechecsucces = models.IntegerField() 
+    nb_reponses_correctes=models.IntegerField() 
+    nb_questions_non_repondues=models.IntegerField() 
+    nb_questions_repondues=models.IntegerField() 
+    num_essai=models.IntegerField() 
     #duree_s = models.IntegerField() 
     #nb_reponse_correctes = models.IntegerField() 
-    class Meta:
-        unique_together = (('utilisateur', 'test'),)
+       
 
 class Question(models.Model):
     texte = models.CharField(max_length=1500)
@@ -39,11 +44,11 @@ class Reponse(models.Model):
     texte = models.CharField(max_length=1500)
     reponse_correcte  = models.IntegerField()
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
-
 class Choix_Utilisateur(models.Model):
     utilisateur = models.ForeignKey(Utilisateur, on_delete=models.CASCADE)
     test  = models.ForeignKey(Test, on_delete=models.CASCADE)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     reponse = models.ForeignKey(Reponse, on_delete=models.CASCADE)
+    reponse_correcte = models.IntegerField(null=True)
     class Meta:
         unique_together = (('utilisateur', 'test','question','reponse'),)

@@ -42,7 +42,12 @@ export class ReponsesService {
       catchError(this.handleError)
     )
   }  
-
+  getReponsesByQuestionIdandcorrectanswer(idquestion: number): Observable<Reponse> {
+    return this.http.get<Reponse>(this.apiURL + '/reponses?question=' + idquestion+'&reponse_correcte=1')
+    .pipe(
+      catchError(this.handleError)
+    )
+  }  
   getTestsById(idtest): Observable<Test> {
     return this.http.get<Test>(this.apiURL + '/tests?id=' + idtest)
     .pipe(

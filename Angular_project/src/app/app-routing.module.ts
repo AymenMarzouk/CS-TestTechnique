@@ -10,6 +10,8 @@ import { RegisterEntrepriseComponent } from './register-entreprise/register-entr
 import { CategoriesComponent } from './categories/categories.component';
 import { TestsComponent } from './tests/tests.component';
 import { QuizComponent } from './quiz/quiz.component';
+import { HistoriquetestComponent } from './historiquetest/historiquetest.component';
+import { ScoreComponent } from './score/score.component';
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent, canActivate: [AuthGuard] },
@@ -21,6 +23,8 @@ const appRoutes: Routes = [
     { path: 'categorie/:id', component: TestsComponent },
     { path: 'registerentreprise', component: RegisterEntrepriseComponent },
     { path: 'quiz/:id', component: QuizComponent },
+    { path: 'utilisateur_test/:id', component: HistoriquetestComponent },
+    { path: 'score/:id', component: ScoreComponent },
     // otherwise redirect to home
     { path: '**', redirectTo: '' }
 ];

@@ -144,3 +144,10 @@ br {
     display: block;
     margin: 10px 0;
  }
+
+ .input-group{
+    width: 386px;
+    margin-left: 400px;
+    color: black;
+    border:0 !important;
+}

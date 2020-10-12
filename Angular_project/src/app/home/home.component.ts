@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { from, Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
 
-import { User } from '../models';
-import { UserService, AuthenticationService } from '../services';
+import { User} from '../models';
+import { UserService, AuthenticationService, TestsService } from '../services';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 
@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 
 export class HomeComponent implements OnInit, OnDestroy {
     currentUser: boolean;
+    Utilisateur:any= [];
     currentUserSubscription: Subscription;
     users: User[] = [];
     email : string; 
@@ -31,6 +32,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     ngOnInit() {
         //this.loadAllUsers();
       //  this.currentUser = this.authenticationService.currentUser;
+      this.loadUtilisateurs(1);
      
     }
 
@@ -50,4 +52,29 @@ export class HomeComponent implements OnInit, OnDestroy {
             this.users = users;
         });
     }
+
+    gettestsbyiduser(iduser: number) {
+
+        this.router.navigate(['/utilisateur_test', iduser]); 
+       //  this.testservice.getTestsBycategorieId(id).subscribe((data: {}) => {
+       //  this.Tests=data
+      
+        //})
+        //return this.router.navigate(['/tests'],this.Tests); 
+      }
+      gettestsbyiduser1(iduser: number) {
+
+        this.router.navigate(['/score', iduser]); 
+       //  this.testservice.getTestsBycategorieId(id).subscribe((data: {}) => {
+       //  this.Tests=data
+      
+        //})
+        //return this.router.navigate(['/tests'],this.Tests); 
+      }
+
+      loadUtilisateurs(id:number) {
+        return this.userService.getUsers(id).subscribe((data: {}) => {
+          this.Utilisateur = data;
+        })
+      }
 }
