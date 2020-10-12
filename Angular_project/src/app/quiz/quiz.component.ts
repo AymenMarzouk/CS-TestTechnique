@@ -30,6 +30,7 @@ export class QuizComponent implements OnInit {
   reponse_correcte :number;
   question_non_repondues :number;
   question_repondues :number;
+  nb_reponse_incorrectes:number;
   constructor(
     private testservice: TestsService,
     private route: ActivatedRoute,
@@ -148,6 +149,7 @@ export class QuizComponent implements OnInit {
       this.reponse_correcte = data['nb_reponses_correctes']
       this.question_non_repondues = data['nb_questions_non_repondues']
       this.question_repondues = data['nb_questions_repondues']
+      this.nb_reponse_incorrectes = data['nb_reponse_incorrectes']
       console.log(data)
     })
     this.completedscore = true ;

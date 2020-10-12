@@ -39,13 +39,13 @@ class Utilisateur_TestSerializer(ModelSerializer):
     class Meta:
         model = Utilisateur_Test
         fields = (
-            'id','utilisateur', 'test', 'score','date','flagechecsucces','nb_reponses_correctes','nb_questions_non_repondues','nb_questions_repondues','num_essai'
+            'id','utilisateur', 'test', 'score','date','flagechecsucces','nb_reponses_correctes','nb_questions_non_repondues','nb_questions_repondues','nb_reponse_incorrectes','num_essai'
         )
 class Utilisateur_TestreadSerializer(ModelSerializer):
     class Meta:
         model = Utilisateur_Test
         fields = (
-            'id','utilisateur', 'test', 'score','date','flagechecsucces','nb_reponses_correctes','nb_questions_non_repondues','nb_questions_repondues','num_essai'
+            'id','utilisateur', 'test', 'score','date','flagechecsucces','nb_reponses_correctes','nb_questions_non_repondues','nb_questions_repondues','nb_reponse_incorrectes','num_essai'
         )
         depth=1
 class QuestionSerializer(ModelSerializer):

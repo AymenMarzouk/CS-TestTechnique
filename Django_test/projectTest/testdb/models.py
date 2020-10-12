@@ -30,6 +30,7 @@ class Utilisateur_Test(models.Model):
     nb_reponses_correctes=models.IntegerField() 
     nb_questions_non_repondues=models.IntegerField() 
     nb_questions_repondues=models.IntegerField() 
+    nb_reponse_incorrectes=models.IntegerField() 
     num_essai=models.IntegerField() 
     #duree_s = models.IntegerField() 
     #nb_reponse_correctes = models.IntegerField() 

@@ -105,6 +105,7 @@ class Utilisateur_TestListView(generics.ListAPIView):
         #score = nb_choix_Utilisateur_reponse_correcte/nb_choix_Utilisateur_all*100
         flagechecsucces =0
         nb_reponse_correcte=nb_choix_Utilisateur_reponse_correcte
+        nb_reponse_incorrectes=Choix_Utilisateur.objects.filter(test=request.data['test'],utilisateur=request.data['utilisateur'],reponse_correcte=0).count()
         if scorefinal >= min_score :
             flagechecsucces=1
         data=request.data
@@ -114,6 +115,7 @@ class Utilisateur_TestListView(generics.ListAPIView):
         data['nb_questions_repondues']=nb_question_repondue
         data['flagechecsucces']=flagechecsucces
         data['score']=int(scorefinal)
+        data['nb_reponse_incorrectes']=nb_reponse_incorrectes
 
         print('testid='+str(request.data['test']))
         Choix_Utilisateur.objects.filter(test=request.data['test'],utilisateur=request.data['utilisateur']).delete()

@@ -272,7 +272,6 @@ label.radio input:checked+span {
 
 #result .nombre{
     content: counter(my-awesome-counter);
-    color: #164ca7;
     font-size: 1.5rem;
     font-weight: bold;
     position: absolute;
