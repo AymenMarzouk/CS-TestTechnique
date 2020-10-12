@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-<<<<<<< HEAD
 import { UserService } from '../services';
-=======
-import { HistoriquetestService } from '../services/historiquetest.service';
->>>>>>> 23a3f0f1a46414cd888245a48480f0974ae079e6
 
 @Component({
   selector: 'app-score',
@@ -18,11 +14,7 @@ export class ScoreComponent implements OnInit {
   idtest: number;
   iduser:number;
 
-<<<<<<< HEAD
   constructor(private route: ActivatedRoute,private testutilisateur:UserService, private router: Router) { }
-=======
-  constructor(private route: ActivatedRoute,private testutilisateur:HistoriquetestService, private router: Router) { }
->>>>>>> 23a3f0f1a46414cd888245a48480f0974ae079e6
 
   ngOnInit(): void {
 
@@ -44,8 +36,4 @@ export class ScoreComponent implements OnInit {
   
 
 
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 23a3f0f1a46414cd888245a48480f0974ae079e6

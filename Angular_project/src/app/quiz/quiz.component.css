@@ -48,7 +48,6 @@ label.radio input:checked+span {
 }
 
 
-<<<<<<< HEAD
 
 
 
@@ -119,15 +118,11 @@ label.radio input:checked+span {
   }
 
   #result .lien {
-=======
-.lien {
->>>>>>> 23a3f0f1a46414cd888245a48480f0974ae079e6
     color: #ff4800;
     
     margin-left: 300px;
     
   }
-<<<<<<< HEAD
   
    @keyframes rotate {
     0% {
@@ -290,41 +285,6 @@ label.radio input:checked+span {
     text-align: center;
   }
   .questionsBox {
-=======
-
-.social-box .box{
-    background: #FFF;
-    border-radius: 10px; 
-    padding: 40px 10px;
-    margin: 20px 0px;
-    cursor: pointer;
-    transition: all 0.5s ease-out;
-    position: relative;
-   
-  }
-  
-  .social-box .box:hover{
-   box-shadow: 0 0 6px #ff4800;
-  }
-  
-  .social-box .box .box-text{
-    margin:20px 0px;
-    font-size: 15px;
-    line-height: 30px;
-  }
-  
-  .social-box .box .box-btn a{
-    text-decoration: none;
-    color: #4183D7;
-    font-size: 16px;
-  }
-
-  .privew {
-    margin-bottom: 20px;
-  
-}
-.questionsBox {
->>>>>>> 23a3f0f1a46414cd888245a48480f0974ae079e6
     display: block;
     border: solid 1px #e3e3e3;
     padding: 10px 20px 0px;
@@ -432,8 +392,3 @@ input[type=checkbox], input[type=radio] {
     background: #FFF;
     color: #007fbe;
 }
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 23a3f0f1a46414cd888245a48480f0974ae079e6

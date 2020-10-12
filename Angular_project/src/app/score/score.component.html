@@ -29,67 +29,37 @@
 						<div class="box-title">
                             <img src="/assets/images/score3.png" alt="image" style="height: 120px;padding: 10px;">
                             <h3>votre score est : &nbsp;{{testuser.score}} %</h3> 
-<<<<<<< HEAD
                             <div *ngIf ="testuser.flagechecsucces== 1 "><h3><label style="float: right; color: green;">Success <img src="/assets/images/succes.png" alt="image" style="height: 60px;padding: 10px;"></label> </h3></div>
                            
                             <div *ngIf ="testuser.flagechecsucces== 0 "><h3><label style="float: right; color: red;">Failed<img src="/assets/images/failed.png" alt="image" style="height: 60px;padding: 10px;"></label> </h3></div>
-=======
-                            <div *ngIf ="testuser.score> 60 "><h3><label style="float: right; color: green;">Success <img src="/assets/images/succes.png" alt="image" style="height: 60px;padding: 10px;"></label> </h3></div>
-                           
-                            <div *ngIf="testuser.score=== 30"><h3><label style="float: right; color: red;">Failed<img src="/assets/images/failed.png" alt="image" style="height: 60px;padding: 10px;"></label> </h3></div>
->>>>>>> 23a3f0f1a46414cd888245a48480f0974ae079e6
 
                         </div>
                         <br><br><br> 
                         <h6> Pour le : &nbsp;{{testuser.test.titre}}</h6>
                         <div class="d-flex align-items-center justify-content-between mt-1" >
-<<<<<<< HEAD
                             <h3 class="font-weight-bold my-2"> 
-=======
-                            <h9 class="font-weight-bold my-2"> 
->>>>>>> 23a3f0f1a46414cd888245a48480f0974ae079e6
                             
                             <img src="/assets/images/question.png" alt="image" style="height: 80px;padding: 10px;">{{testuser.test.nb_questions}} Questions
                             <img src="/assets/images/time.png" alt="image" style="height: 60px;padding: 10;">{{testuser.test.nb_minutes}} Minutes	
                             
-<<<<<<< HEAD
                             </h3>
                           </div>
                           <br>
                           <h6> Numero d'essai : &nbsp;<label class="nombre" >{{testuser.num_essai}}</label></h6>
-=======
-                            </h9>
-                          </div>
-                          <br>
-                          <h6> Avec le nombre d'essai : &nbsp;<label class="nombre" >{{testuser.essai_id}}</label></h6>
->>>>>>> 23a3f0f1a46414cd888245a48480f0974ae079e6
 						
 
 					
 				
-<<<<<<< HEAD
             <div >
-=======
-            <div *ngFor="let choix of Choix_Utilisateur  " >
->>>>>>> 23a3f0f1a46414cd888245a48480f0974ae079e6
                 
                 <div class="box-title">
                     <br>
                    
-<<<<<<< HEAD
                         <h6>Réponses correctes :  &nbsp;<label class="nombre" >{{testuser.nb_reponses_correctes}}</label></h6>
                         <br>
                         <h6>Question non répondues: &nbsp;<label class="nombre" >{{testuser.nb_questions_non_repondues}}</label></h6>
                         <br>
                         <h6>Question répondues: &nbsp;<label class="nombre" >{{testuser.nb_questions_repondues}}</label></h6>
-=======
-                        <h6>Réponses correctes :  &nbsp;<label class="nombre" >{{choix.total_reponses_correctes}}</label></h6>
-                        <br>
-                        <h6>Réponses incorrectes : &nbsp;<label class="nombre" >{{choix.total_reponses_correctes}}</label></h6>
-                        <br>
-                        <h6>Question non répondues: &nbsp;<label class="nombre" >{{choix.question.id}}</label></h6>
-                   
->>>>>>> 23a3f0f1a46414cd888245a48480f0974ae079e6
                 </div>
                  
                     
@@ -107,10 +77,4 @@
 </div>
 </div>
 </div>
-<<<<<<< HEAD
 </section>
-=======
-</section>
-
-
->>>>>>> 23a3f0f1a46414cd888245a48480f0974ae079e6

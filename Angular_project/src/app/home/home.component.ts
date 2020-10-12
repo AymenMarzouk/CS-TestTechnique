@@ -3,14 +3,9 @@ import { from, Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
 
 import { User} from '../models';
-<<<<<<< HEAD
-=======
-
->>>>>>> 23a3f0f1a46414cd888245a48480f0974ae079e6
 import { UserService, AuthenticationService, TestsService } from '../services';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
-import { HistoriquetestService } from '../services/historiquetest.service';
 
 @Component({ 
     selector: 'app-home',
@@ -27,8 +22,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         private authenticationService: AuthenticationService,
         private userService: UserService,
         private cookieService: CookieService,
-        private router: Router,
-        private usertestService:HistoriquetestService
+        private router: Router
     ) {
        // this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
             
@@ -38,11 +32,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     ngOnInit() {
         //this.loadAllUsers();
       //  this.currentUser = this.authenticationService.currentUser;
-<<<<<<< HEAD
       this.loadUtilisateurs(1);
-=======
-      this.loadUtilisateurs();
->>>>>>> 23a3f0f1a46414cd888245a48480f0974ae079e6
      
     }
 
@@ -82,13 +72,8 @@ export class HomeComponent implements OnInit, OnDestroy {
         //return this.router.navigate(['/tests'],this.Tests); 
       }
 
-<<<<<<< HEAD
       loadUtilisateurs(id:number) {
         return this.userService.getUsers(id).subscribe((data: {}) => {
-=======
-      loadUtilisateurs() {
-        return this.usertestService.getUsers().subscribe((data: {}) => {
->>>>>>> 23a3f0f1a46414cd888245a48480f0974ae079e6
           this.Utilisateur = data;
         })
       }
