@@ -276,6 +276,8 @@ label.radio input:checked+span {
     font-weight: bold;
     position: absolute;
     --size: 32px;
+    margin-top: -8px;
+    left: calc(-1 * var(--size) - 0px);
     left: calc(-1 * var(--size) - 10px);
     line-height: var(--size);
     width: var(--size);

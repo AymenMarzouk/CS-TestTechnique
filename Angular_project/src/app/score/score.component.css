@@ -212,6 +212,8 @@ img {
   font-size: 1.5rem;
   font-weight: bold;
   position: absolute;
+  margin-top: -8px;
+  left: calc(-1 * var(--size) - 0px);
   --size: 32px;
   left: calc(-1 * var(--size) - 10px);
   line-height: var(--size);
