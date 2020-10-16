@@ -20,6 +20,8 @@ import { QuizComponent } from './quiz/quiz.component';
 import { QuestionsService } from './services';
 import { HistoriquetestComponent } from './historiquetest/historiquetest.component';
 import { ScoreComponent } from './score/score.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+
 
 @NgModule({
   imports: [
@@ -29,6 +31,7 @@ import { ScoreComponent } from './score/score.component';
       CommonModule,
       routing,
       RouterModule
+     
     
   ],
   declarations: [
@@ -44,7 +47,8 @@ import { ScoreComponent } from './score/score.component';
       TestsComponent,
       QuizComponent,
       HistoriquetestComponent,
-      ScoreComponent
+      ScoreComponent,
+      DashboardComponent
      
   ],
   providers: [

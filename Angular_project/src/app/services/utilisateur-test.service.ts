@@ -82,6 +82,11 @@ export class UtilisateurTestService {
     )
   }
 
+  GetUtilisateurTest(): Observable<UtilisateurTest> {
+    return this.http.get<UtilisateurTest>(this.apiURL + '/utilisateur_testread')
+   
+  }
+
   // Error handling 
   handleError(error) {
      let errorMessage = '';
@@ -95,5 +100,7 @@ export class UtilisateurTestService {
      window.alert(errorMessage);
      return throwError(errorMessage);
   }
+
+ 
 
 }

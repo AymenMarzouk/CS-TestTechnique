@@ -33,6 +33,9 @@ export class HomeComponent implements OnInit, OnDestroy {
         //this.loadAllUsers();
       //  this.currentUser = this.authenticationService.currentUser;
       this.loadUtilisateurs(1);
+
+
+      
      
     }
 

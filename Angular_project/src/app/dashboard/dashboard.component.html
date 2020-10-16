@@ -1,0 +1,110 @@
+  
+<div class="s-layout">
+    <!-- Sidebar -->
+    <div class="s-layout__sidebar">
+      <a class="s-sidebar__trigger" href="#0">
+         <i class="fa fa-bars"></i>
+      </a>
+    
+      <nav class="s-sidebar__nav">
+         <ul>
+            <li>
+               <a class="s-sidebar__nav-link"  routerLink="/categorie">
+                  <i class="fa fa-list-alt"></i><em>Categorie</em>
+               </a>
+            </li>
+            <li>
+               <a class="s-sidebar__nav-link"  routerLink="/home">
+                 <i class="fa fa-home"></i><em>Home</em>
+               </a>
+            </li>
+            <li>
+               <a class="s-sidebar__nav-link" href="#0">
+                  <i class="fa fa-camera"></i><em>Camera</em>
+               </a>
+            </li>
+         </ul>
+      </nav>
+    </div>
+    
+    <!-- Content -->
+    <main class="s-layout__content">
+      <div class="container mt-5">
+         
+                <div class="row">
+                <div class="col-md-3">
+                  <div class="card-counter primary">
+                    <i class="fa fa-bars"></i>
+                    <span class="count-numbers">12</span>
+                    <span class="count-name">Tests</span>
+                  </div>
+                </div>
+            
+                <div class="col-md-3">
+                  <div class="card-counter danger">
+                    <i class="fa fa-star"></i>
+                    <span class="count-numbers">599</span>
+                    <span class="count-name">Scores</span>
+                  </div>
+                </div>
+            
+                <div class="col-md-3">
+                  <div class="card-counter success">
+                    <i class="fa fa-database"></i>
+                    <span class="count-numbers">6875</span>
+                    <span class="count-name">Data</span>
+                  </div>
+                </div>
+            
+                <div class="col-md-3">
+                  <div class="card-counter info">
+                    <i class="fa fa-users"></i>
+                    <span class="count-numbers">35</span>
+                    <span class="count-name">Users</span>
+                  </div>
+                </div>
+              </div>
+             
+              
+        
+           
+        
+         <div class="row mb-5">
+             <div class="col-md-6 mt-3">
+               <div class="bg-white p-3 rounded border">
+                <div *ngIf="chart">
+                    <canvas id="canvas" >{{ chart }}</canvas>
+                  </div>
+                </div>
+                
+             </div>
+             <div class="col-md-6 mt-3">
+               <div class="bg-white p-3 rounded border">
+                <div *ngIf="chart">
+                    <canvas id="canvas1">{{ chart1 }}</canvas>
+                  </div>
+                  
+                  
+                </div>
+             </div>
+             <div class="col-md-6 mt-3">
+                 <div class="bg-white p-3 rounded border">
+                  <div *ngIf="chart">
+                    <canvas id="canvas2" >{{ chart2 }}</canvas>
+                  </div>
+                    
+                 </div>
+             </div>
+             <div class="col-md-6 mt-3">
+                 <div class="bg-white p-3 rounded border">
+                  <div *ngIf="chart">
+                    <canvas id="canvas3" >{{ chart3 }}</canvas>
+                  </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+
+    </main>
+    </div>
+                           

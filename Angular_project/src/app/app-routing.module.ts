@@ -12,6 +12,7 @@ import { TestsComponent } from './tests/tests.component';
 import { QuizComponent } from './quiz/quiz.component';
 import { HistoriquetestComponent } from './historiquetest/historiquetest.component';
 import { ScoreComponent } from './score/score.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent, canActivate: [AuthGuard] },
@@ -25,6 +26,7 @@ const appRoutes: Routes = [
     { path: 'quiz/:id', component: QuizComponent },
     { path: 'utilisateur_test/:id', component: HistoriquetestComponent },
     { path: 'score/:id', component: ScoreComponent },
+    { path: 'dashboard', component: DashboardComponent },
     // otherwise redirect to home
     { path: '**', redirectTo: '' }
 ];
