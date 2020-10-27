@@ -26,7 +26,7 @@ const appRoutes: Routes = [
     { path: 'quiz/:id', component: QuizComponent },
     { path: 'utilisateur_test/:id', component: HistoriquetestComponent },
     { path: 'score/:id', component: ScoreComponent },
-    { path: 'dashboard', component: DashboardComponent },
+    { path: 'dashboard/:id', component: DashboardComponent },
     // otherwise redirect to home
     { path: '**', redirectTo: '' }
 ];

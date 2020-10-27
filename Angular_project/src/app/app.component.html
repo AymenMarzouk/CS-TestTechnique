@@ -41,7 +41,13 @@
              <a class="nav-item nav-link" routerLink="/registerentreprise"> Entreprise </a>
              <a class="nav-item nav-link" routerLink="/home"> Home </a>
              <a class="nav-item nav-link" routerLink="/login">Login</a>
+             <div *ngFor="let user of Utilisateur" > 
+                <a class="nav-item nav-link" (click)="gettestsbyiduser(user.id)">
+                   Dashboard
+                </a>
+                </div>
          </div>
+         
      </nav>
  
      </div>

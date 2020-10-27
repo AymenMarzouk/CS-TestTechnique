@@ -43,19 +43,19 @@
                       </div>
             <br><br>
             <div class="row">
-            <div *ngFor="let user of Utilisateur" cass="col-md-4"> 
+            <div *ngFor="let users of users" cass="col-md-4"> 
                 
                 <div class="single-services-box">
                     
-                        <h3>{{user.firstname}}</h3>
+                        <h3>{{users.firstname}}</h3>
                         
                     
                     <hr class="solid">
                     <div class="card categories-card">
                         
-                        <button  (click)="gettestsbyiduser(user.id)" class="btn btn-secondary ">Voir les Historiques du tests</button>
+                        <button  (click)="gettestsbyiduser(users.id)" class="btn btn-secondary ">Voir les Historiques du tests</button>
                         <br>
-                        <button  (click)="gettestsbyiduser1(user.id)" class="btn btn-secondary ">Voir votre score du tests</button>
+                        <button  (click)="gettestsbyiduser1(users.id)" class="btn btn-secondary ">Voir votre score du tests</button>
                     </div>
                     
                    </div>        

@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     currentUser: boolean;
     Utilisateur:any= [];
     currentUserSubscription: Subscription;
-    users: User[] = [];
+    users: User[] ;
     email : string; 
     password : string ;
     constructor(
@@ -30,9 +30,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        //this.loadAllUsers();
+        this.loadAllUsers();
       //  this.currentUser = this.authenticationService.currentUser;
-      this.loadUtilisateurs(1);
+     /*this.loadUtilisateurs(1);*/
 
 
       
@@ -50,9 +50,10 @@ export class HomeComponent implements OnInit, OnDestroy {
         });
     }
 
-    private loadAllUsers() {
-        this.userService.getAll().pipe(first()).subscribe(users => {
+   loadAllUsers() {
+        this.userService.getAll().subscribe(users => {
             this.users = users;
+            console.log(this.users);
         });
     }
 

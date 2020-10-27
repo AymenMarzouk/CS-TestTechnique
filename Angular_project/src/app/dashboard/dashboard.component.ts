@@ -1,13 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 /*import * as pluginDataLabels from 'chartjs-plugin-datalabels';*/
 import { Label } from 'ng2-charts';
 import { UtilisateurTestService } from '../services/utilisateur-test.service';
 /*import { Chart } from 'chart.js';*/
-import { UtilisateurTest } from '../models/UtilisateurTest';
+
 import { HttpClient } from '@angular/common/http';
 import { timestamp } from 'rxjs/operators';
 import {Chart} from 'node_modules/chart.js';
+import { TestUtilisateur } from '../models/TestUtilisateur';
+import {FormsModule} from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { UserService } from '../services';
 
 
 
@@ -19,7 +23,8 @@ import {Chart} from 'node_modules/chart.js';
 export class DashboardComponent implements OnInit {
 
   public canvas: any;
-  utilisateurtest: UtilisateurTest[];
+  utilisateurtest: any[];
+
   chart = [];
   test =[];
   score = [];
@@ -27,16 +32,34 @@ export class DashboardComponent implements OnInit {
   chart1 =[];
   chart2 =[];
   chart3 =[];
-  url = 'http://localhost:8000/utilisateur_test';
-  constructor(private utilisateurtestService: UtilisateurTestService,private httpClient: HttpClient) {}
+  Utilisateur:any= [];
+  Utilisateur_Tests: any = [];
+  idtest: number;
+  iduser:number;
+  @Input() nb: number;
+  
+  /*url = 'http://localhost:8000/utilisateur_testread?utilisateur='+ iduser'*/
+  constructor(private utilisateurtestService: UtilisateurTestService,private httpClient: HttpClient, 
+    private router: Router,private userService: UserService, private testutilisateur:UserService ,
+    private route: ActivatedRoute) {}
 
   ngOnInit()  {
+    this.iduser = this.route.snapshot.params['id'];
+    this.loadUtilisateurs(this.iduser);
+
+
+    this.iduser = this.route.snapshot.params['id'];
+    this.testutilisateur.getTestUtisateursById(this.iduser).subscribe((data: {}) => {
+      this.Utilisateur_Tests=data
+      console.log(this.Utilisateur_Tests);
+  })
     
-    
-    this.httpClient.get(this.url).subscribe((res: UtilisateurTest[]) => {
+   /* this.httpClient.get(this.url).subscribe((res: any[]) => {*/
+      this.testutilisateur.getTestUtisateursById(this.iduser).subscribe((res:any []) => {
+        
     /*this.utilisateurtestService.GetUtilisateurTest().subscribe((res: UtilisateurTest[]) => {*/
-     res.forEach(y => {
-        this.test.push(y.test);
+      res.forEach(y => {
+        this.test.push(y.test.id);
         
         console.log(res)
         this.score.push(y.score);
@@ -78,16 +101,66 @@ export class DashboardComponent implements OnInit {
         options: {
           legend: {
             display: true,
+            position:'right',
+            align:'center',
+            labels: {
+              
+              fontSize:10,
+              padding:10,
+              fontColor:'#007bff',
+              fontFamily:'Helvetica'
+          }
             
           },
           scales: {
             xAxes: [{
-              display: true
+              display: true,
+              
             }],
             yAxes: [{
               display: true
             }],
+          },
+          title: {
+            display: true,
+            text: 'Score Test Chart',
+            fontColor: 'rgb(255, 99, 132)',
+            fontSize:16,
+            fontFamily:'Helvetica',
+            fontStyle:'bold'
+
+        },
+        layout: {
+          padding: {
+              left: 0,
+              right: 0,
+              top: 0,
+              bottom: 0
           }
+      },
+
+      animation: {
+        
+            duration: 1000,
+            easing: 'linear',
+            from: 1,
+            to: 0,
+            loop: true
+        
+    },
+
+    tooltips: {
+      callbacks: {
+        title: function(tooltipItems, data) {
+          //Return value for title
+          return 'Test: ' + tooltipItems[0].xLabel ;
+      },
+          labelTextColor: function(tooltipItem, chart) {
+              return '#FFFFFF';
+          }
+      }
+  }
+
         }
       });
 
@@ -123,8 +196,57 @@ export class DashboardComponent implements OnInit {
         options: {
           legend: {
             display: true,
+            position:'right',
+            align:'center',
+            labels: {
+              
+              fontSize:10,
+              padding:10,
+              fontColor:'#007bff',
+              fontFamily:'Helvetica'
+          }
             
           },
+          title: {
+            display: true,
+            text: 'Score Test Chart',
+            fontColor: 'rgb(255, 99, 132)',
+            fontSize:16,
+            fontFamily:'Helvetica',
+            fontStyle:'bold'
+
+        },
+        layout: {
+          padding: {
+              left: 0,
+              right: 0,
+              top: 0,
+              bottom: 0
+          }
+      },
+
+          animation: {
+            
+                duration: 1000,
+                easing: 'linear',
+                from: 1,
+                to: 0,
+                loop: true
+            
+        },
+
+        
+    tooltips: {
+      callbacks: {
+        title: function(tooltipItems, data) {
+          //Return value for title
+          return 'Test: ' + tooltipItems[0].xLabel ;
+      },
+          labelTextColor: function(tooltipItem, chart) {
+              return '#FFFFFF';
+          }
+      }
+  }
           
         }
       });
@@ -153,6 +275,15 @@ export class DashboardComponent implements OnInit {
         options: {
           legend: {
             display: true,
+            position:'right',
+            align:'center',
+            labels: {
+              
+              fontSize:10,
+              padding:10,
+              fontColor:'#007bff',
+              fontFamily:'Helvetica'
+          }
             
           },
           scales: {
@@ -162,7 +293,48 @@ export class DashboardComponent implements OnInit {
             yAxes: [{
               display: true
             }],
+          },
+          title: {
+            display: true,
+            text: 'Reponse Correct Test Chart',
+            fontColor: 'rgb(255, 99, 132)',
+            fontSize:16,
+            fontFamily:'Helvetica',
+            fontStyle:'bold'
+
+        },
+        layout: {
+          padding: {
+              left: 0,
+              right: 0,
+              top: 0,
+              bottom: 0
           }
+      },
+
+      
+      animation: {
+        
+        duration: 1000,
+        easing: 'linear',
+        from: 1,
+        to: 0,
+        loop: true
+    
+},
+      
+    tooltips: {
+      callbacks: {
+        title: function(tooltipItems, data) {
+          //Return value for title
+          return 'Reponse correcte: ' + tooltipItems[0].xLabel+ tooltipItems[0].yLabel;
+      },
+          labelTextColor: function(tooltipItem, chart) {
+              return '#FFFFFF';
+          }
+      }
+  }
+
         }
       });
       
@@ -190,6 +362,15 @@ export class DashboardComponent implements OnInit {
         options: {
           legend: {
             display: true,
+            position:'right',
+            align:'center',
+            labels: {
+              
+              fontSize:10,
+              padding:10,
+              fontColor:'#007bff',
+              fontFamily:'Helvetica'
+          }
             
           },
           scales: {
@@ -199,7 +380,48 @@ export class DashboardComponent implements OnInit {
             yAxes: [{
               display: true
             }],
+          },
+          title: {
+            display: true,
+            text: 'Score Test Chart',
+            fontColor: 'rgb(255, 99, 132)',
+            fontSize:16,
+            fontFamily:'Helvetica',
+            fontStyle:'bold'
+
+        },
+        layout: {
+          padding: {
+              left: 0,
+              right: 0,
+              top: 0,
+              bottom: 0
           }
+      },
+
+      
+      animation: {
+        
+        duration: 1000,
+        easing: 'linear',
+        from: 1,
+        to: 0,
+        loop: true
+    
+},
+      
+    tooltips: {
+      callbacks: {
+        title: function(tooltipItems, data) {
+          //Return value for title
+          return 'Test: ' + tooltipItems[0].xLabel ;
+      },
+          labelTextColor: function(tooltipItem, chart) {
+              return '#FFFFFF';
+          }
+      }
+  }
+
         }
       });
 
@@ -214,6 +436,23 @@ export class DashboardComponent implements OnInit {
   }
   
  
+  
+  gettestsbyiduser(iduser: number) {
 
+    this.router.navigate(['/dashboard', iduser]); 
+  }
+
+  gettestsbyiduser1(iduser: number) {
+
+    this.router.navigate(['/utilisateur_test', iduser]); 
+  }
+
+  loadUtilisateurs(id:number) {
+    return this.userService.getUsers(id).subscribe((data: {}) => {
+      this.Utilisateur = data;
+    })
+  }
+
+  
   
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
-import { AuthenticationService, AlertService } from './services';
+import { AuthenticationService, AlertService, UserService } from './services';
 import { User } from './models';
 import { Observable } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
@@ -14,7 +14,9 @@ export class AppComponent implements OnInit{
     constructor(
         private authenticationService: AuthenticationService,
         private router: Router,
-        private cookieService: CookieService
+        private cookieService: CookieService,
+        private userService: UserService, private testutilisateur:UserService ,
+        private route: ActivatedRoute
        
     ) {
      // this.currentUser = this.authenticationService.currentUser ;
@@ -22,8 +24,19 @@ export class AppComponent implements OnInit{
    
     }
     
-
+    Utilisateur:any= [];
+    Utilisateur_Tests: any = [];
+    idtest: number;
+    iduser:number;
     ngOnInit(){
+      /*this.iduser = this.route.snapshot.params['id'];*/
+      
+      this.loadUtilisateurs(1);
+
+
+     
+
+
       console.log("loading app");
       this.currentuserkey$ = this.authenticationService.currentuserkeyusername ;
       this.currentUser$ = this.authenticationService.currentuserStatus ;
@@ -151,5 +164,16 @@ logout() {
     this.cookieService.deleteAll() ;
   //  this.authenticationService.currentUser = false ;
     this.router.navigate(['/login']);
+}
+
+loadUtilisateurs(id:number) {
+  return this.userService.getUsers(id).subscribe((data: {}) => {
+    this.Utilisateur = data;
+  })
+}
+
+gettestsbyiduser(iduser: number) {
+
+  this.router.navigate(['/dashboard', iduser]); 
 }
 }

@@ -6,7 +6,7 @@ import { AlertComponent } from './components/alert.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule ,FormsModule } from '@angular/forms';
 import { JwtInterceptor, ErrorInterceptor } from './helpers';
 import { CommonModule } from '@angular/common';  
 import { routing }        from './app-routing.module';
@@ -23,6 +23,7 @@ import { ScoreComponent } from './score/score.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 
+
 @NgModule({
   imports: [
       BrowserModule,
@@ -30,8 +31,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
       HttpClientModule,
       CommonModule,
       routing,
-      RouterModule
-     
+      RouterModule,
+      FormsModule
+      
     
   ],
   declarations: [

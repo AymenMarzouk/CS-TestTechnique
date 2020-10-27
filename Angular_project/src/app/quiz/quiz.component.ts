@@ -141,6 +141,7 @@ export class QuizComponent implements OnInit {
     let utilisateurtest = new UtilisateurTest ;
     utilisateurtest.utilisateur=1;
     utilisateurtest.test=this.id;
+   
     console.log('idtest='+utilisateurtest)
     this.utilisateurtestService.createUtilisateurTest(utilisateurtest).subscribe((data: {}) => {
       this.resultat = data['score'] ;
