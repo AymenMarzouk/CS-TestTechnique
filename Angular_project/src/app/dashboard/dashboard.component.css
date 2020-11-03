@@ -33,7 +33,9 @@ a {
   display: flex;
   width: 100%;
   min-height: 100vh;
-  background-color: #c5bec5;
+  /*background-color:LightSlateGrey;*/
+  background-color:CadetBlue;
+
 }
 
 .s-layout__content {

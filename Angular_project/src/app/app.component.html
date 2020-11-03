@@ -8,14 +8,18 @@
     !-- End Preloader -->
     <body id="body">
         <!-- Start Navbar Area -->
+        
         <div class="navbar-area" >
          <nav class="navbar navbar-expand-md navbar-dark ">
-             
+            <a class="navbar-brand" routerLink="/home">
+                <img src="assets/img/white-logo.png" class="main-logo" alt="logo">
+            </a>
              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
           <div class="collapse navbar-collapse  " id="navbarTogglerDemo01" >
         
+            
          <nav class="navbar navbar-expand navbar-dark "  *ngIf="(currentUser$ |async) as loginstatus" >
            <div *ngIf="loginstatus" class="navbar-nav ml-auto">
                <a class="nav-item nav-link" routerLink="/home">Home</a>
@@ -35,14 +39,14 @@
        </nav>
  
        <nav class="navbar navbar-expand navbar-dark " 
-       *ngIf="!(currentUser$ |async) as loginstatus">
-         <div  *ngIf="loginstatus" class="navbar-nav ml-auto">
-             <a class="nav-item nav-link" routerLink="/register">Developer</a>
-             <a class="nav-item nav-link" routerLink="/registerentreprise"> Entreprise </a>
-             <a class="nav-item nav-link" routerLink="/home"> Home </a>
-             <a class="nav-item nav-link" routerLink="/login">Login</a>
+       *ngIf="!(currentUser$ |async) as loginstatus"  >
+         <div  *ngIf="loginstatus" class="navbar-nav ml-auto" >
+             <a class="nav-item nav-link"  style="color:#ffffff"  routerLink="/register">Developer</a>
+             <a class="nav-item nav-link"  style="color:#ffffff" routerLink="/registerentreprise"> Entreprise </a>
+             <a class="nav-item nav-link"  style="color:#ffffff"  routerLink="/categorie"> Test Technique </a>
+             <a class="nav-item nav-link"  style="color:#ffffff" routerLink="/login">Login</a>
              <div *ngFor="let user of Utilisateur" > 
-                <a class="nav-item nav-link" (click)="gettestsbyiduser(user.id)">
+                <a class="nav-item nav-link" (click)="gettestsbyiduser(user.id)" style="color:#ffffff" >
                    Dashboard
                 </a>
                 </div>
@@ -56,9 +60,10 @@
      </div>
      <!-- End Navbar Area -->
     
+     
   
          
-   <app-alert id="alert"></app-alert>
+   <!--<app-alert id="alert"></app-alert>-->
  <router-outlet></router-outlet>
  
          <!-- Start Footer Area -->

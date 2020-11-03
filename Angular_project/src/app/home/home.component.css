@@ -1,6 +1,18 @@
+@import url("https://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700,800&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap");
+.main-banner {
+    height: 770px;
+    position: relative;
+    background-image: url(../../assets/img/2.jpg);
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+   
+  }
 body{
     margin-top:20px;
 background:#f5f5f5;
+font-family: "Open Sans", sans-serif;
 }
 
 .categories-card.card {
@@ -151,3 +163,14 @@ br {
     color: black;
     border:0 !important;
 }
+
+.main-banner-content .btn{
+ background-color: #ff4800;
+ border: #ff4800 ;
+ color: #f5f5f5;
+ 
+ font-family: 'Dosis', sans-serif;
+}
+
+
+

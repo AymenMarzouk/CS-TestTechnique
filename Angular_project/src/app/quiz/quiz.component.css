@@ -295,7 +295,8 @@ label.radio input:checked+span {
    /* margin-left: 150px;
     margin-right: 150px;*/
 }.questions {
-    background: #fc7c49;
+    /*background: #fc7c49;*/
+    background: #ff4800;
     color: #FFF;
     font-size: 22px;
     padding: 8px 30px;
@@ -392,4 +393,7 @@ input[type=checkbox], input[type=radio] {
     padding: 0 10px;
     background: #FFF;
     color: #007fbe;
+}
+.auto1{
+  position: auto;
 }
