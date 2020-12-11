@@ -1,5 +1,5 @@
 # serializers.py
-from rest_framework.serializers import ModelSerializer
+from rest_framework.serializers import ModelSerializer,ValidationError
 from rest_framework import serializers
 from .models import Categorie
 from .models import Test
@@ -8,6 +8,7 @@ from .models import Question
 from .models import Utilisateur_Test
 from .models import Choix_Utilisateur
 from .models import Reponse
+from .models import QuestionReponse
 class CategorieSerializer(ModelSerializer):
     
 
@@ -16,18 +17,40 @@ class CategorieSerializer(ModelSerializer):
 
     def get_total_test(self, categorie):
         return categorie.test_set.count() # change 'test' with corresponding "related_name" value
+       
 
     class Meta:
         model = Categorie
         fields = (
-            'id', 'titre','total_test'
+             'id','titre','total_test'
         )
+
+    def validate(self,value):
+        data=self.get_initial()
+        titre= data.get('titre')
+        
+        categorie_sq=Categorie.objects.filter(titre=titre)
+        if categorie_sq.exists():
+           raise ValidationError("categorie exist")
+        return value
+
 class TestSerializer(ModelSerializer):
     class Meta:
         model = Test
         fields = (
             'id', 'titre', 'description', 'nb_questions', 'nb_minutes', 'categorie'
         )
+        depth = 1
+
+class TestcreateSerializer(ModelSerializer):
+    class Meta:
+        model = Test
+        fields = (
+            'id', 'titre', 'description', 'nb_questions', 'nb_minutes', 'categorie'
+        )
+                
+
+
 class UtilisateurSerializer(ModelSerializer):
     class Meta:
         model = Utilisateur
@@ -66,3 +89,10 @@ class Choix_UtilisateurSerializer(ModelSerializer):
         fields = (
             'id','utilisateur', 'test', 'question', 'reponse','reponse_correcte'
         )
+
+class QuestionReponseSerializer(ModelSerializer):
+    class Meta:
+        model = QuestionReponse
+        fields =(
+            'id', 'id_test', 'id_question', 'question','id_reponse','reponse','poids','reponse_correctes'
+            )        

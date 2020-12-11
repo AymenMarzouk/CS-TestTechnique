@@ -10,6 +10,7 @@ from rest_framework import status
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.viewsets import GenericViewSet
 from rest_framework import viewsets
+from rest_framework.views import APIView
 from .models import Categorie
 from .models import Question
 from .models import Choix_Utilisateur
@@ -18,13 +19,19 @@ from .models import Test
 from .models import Reponse
 from .models import Utilisateur_Test
 from .models import Utilisateur
-from .Serializer import TestSerializer
+from .models import QuestionReponse
+from .Serializer import TestSerializer,TestcreateSerializer
 from .Serializer import QuestionSerializer
 from .Serializer import UtilisateurSerializer
 from .Serializer import ReponseSerializer
 from .Serializer import Choix_UtilisateurSerializer
 from .Serializer import Utilisateur_TestSerializer
 from .Serializer import Utilisateur_TestreadSerializer
+from .Serializer import QuestionReponseSerializer
+from xlrd import open_workbook
+import  simplejson
+
+
 
 class CategorieViewSet(viewsets.ModelViewSet):  # handles GETs for many Companies
 
@@ -38,18 +45,177 @@ class TestListView(generics.ListAPIView):  # handles GETs for many Companies
       filter_backends=(DjangoFilterBackend,)
       filter_fields = ('categorie','id',)
 
-class QuestionListView(generics.ListAPIView):  # handles GETs for many Companies
+class TestCreateView(generics.CreateAPIView):  # handles GETs for many Companies
+
+      serializer_class = TestcreateSerializer
+      queryset = Test.objects.all()
+      filter_backends=(DjangoFilterBackend,)
+      filter_fields = ('categorie','id',)
+
+
+
+class QuestionListView(generics.ListCreateAPIView):  # handles GETs for many Companies
 
       serializer_class = QuestionSerializer
       queryset = Question.objects.all()
       filter_backends=(DjangoFilterBackend,)
-      filter_fields = ('id','test',)
-class ReponseListView(generics.ListAPIView):  # handles GETs for many Companies
+      filter_fields = ('test','id',)
+class ReponseListView(generics.ListCreateAPIView):  # handles GETs for many Companies
 
       serializer_class = ReponseSerializer
       queryset = Reponse.objects.all()
       filter_backends=(DjangoFilterBackend,)
       filter_fields = ('question','reponse_correcte',)
+
+class QuestionReponseView(APIView):
+
+      def post(self, request, format=None):
+          
+        response=[]
+        for reponse in request.data:
+            reponse_correcte = reponse.get("reponse_correcte")
+            texte = reponse.get("texte")
+            question = reponse['question']['id']
+            data = {'reponse_correcte': reponse_correcte,'texte': texte, 'question': question}
+            serializer = ReponseSerializer(data=data)
+            if serializer.is_valid():
+                  serializer.save()
+                  response.append(reponse) 
+                  
+        return Response(response, status=status.HTTP_200_OK)
+
+class ReponseCreateView (generics.CreateAPIView):
+   def post(self,request, format=None):
+       file_obj = request.FILES['file']
+    
+       wb = open_workbook(file_contents=file_obj.read())
+       sh=wb.sheet_by_index(1)
+       
+       values = []
+       responses=[]
+       
+       for row in range(1,sh.nrows): 
+              col_names = sh.row(1)
+              col_value = []
+              for name, col in zip(col_names, range(sh.ncols)):
+                  value  = (sh.cell(row,col).value)
+                  
+                  try : value = str(int(value))
+                  except : pass
+                  col_value.append((value))
+              values.append(col_value)
+              print (values)
+            
+              text = sh.cell_value(row,1)
+              reponse_correcte = sh.cell_value(row,2)
+              question = sh.cell_value(row,3)
+              print(text)
+              data = {'texte': text ,'reponse_correcte': reponse_correcte, 'question':  int(question) }
+            
+              serializer = ReponseSerializer(data=data)
+              if serializer.is_valid():
+                  serializer.save()
+                  responses.append(serializer.data)
+            
+                  
+       return Response(responses, status=status.HTTP_200_OK) 
+   
+
+
+
+class QuestionCreateView(generics.CreateAPIView):
+
+ def post(self,request, format=None):
+    file_obj = request.FILES['file']
+    
+    wb = open_workbook(file_contents=file_obj.read())
+    
+    values = []
+    questions=[]
+    for s in wb.sheets():
+      #print 'Sheet:',s.name
+        for row in range(1, s.nrows):
+             
+            col_names = s.row(0)
+            col_value = []
+            for name, col in zip(col_names, range(s.ncols)):
+                  value  = (s.cell(row,col).value)
+                  
+                  try : value = str(int(value))
+                  except : pass
+                  col_value.append((value))
+            values.append(col_value)
+            print (values)
+            
+            text = s.cell_value(row,0)
+            poids = s.cell_value(row,1)
+            test = s.cell_value(row,2)
+            print(text)
+            data = {'texte': text ,'poids': str(poids), 'test':  int(test) }
+            
+            serializer = QuestionSerializer(data=data)
+            if serializer.is_valid():
+                  serializer.save()
+                  questions.append(serializer.data)
+            
+                  
+    return Response(questions, status=status.HTTP_200_OK)
+    
+                  
+    
+class QuestionReponseCreateView(generics.CreateAPIView):
+
+ def post(self,request, format=None):
+    file_obj = request.FILES['file']
+    
+    wb = open_workbook(file_contents=file_obj.read())
+    
+    values = []
+    questionreponses=[]
+    for s in wb.sheets():
+      #print 'Sheet:',s.name
+        for row in range(1, s.nrows):
+             
+            col_names = s.row(0)
+            col_value = []
+            for name, col in zip(col_names, range(s.ncols)):
+                  value  = (s.cell(row,col).value)
+                  
+                  try : value = str(int(value))
+                  except : pass
+                  col_value.append((value))
+            values.append(col_value)
+            print (values)
+            id_test = s.cell_value(row,0)
+            id_question = s.cell_value(row,1)
+            question = s.cell_value(row,2)
+            poids= s.cell_value(row,3)
+            id_reponse = s.cell_value(row,4)
+            reponse = s.cell_value(row,5)
+            reponse_correcte= s.cell_value(row,6)
+            nb_question_repondue=QuestionReponse.objects.values('question').distinct()
+            data = { 'question':  question ,'poids': str(poids),'reponse': reponse,'reponse_correctes': str(reponse_correcte),
+            'id_question': str(id_question),'id_reponse': str(id_reponse ),'id_test': str(id_test )}
+
+            #queryset  = QuestionReponse.objects.raw(" select distinct id ,id_test , id_question ,question , id_reponse from public.testdb_questionreponse ")
+            #queryset1 = self.get_queryset ()
+            #print(result)
+            #serializer = QuestionReponseSerializer(list(queryset1))
+            #dataquestion=data = { 'question':  question ,'reponse': reponse ,'id_question': int(id_question),'id_reponse':  int(id_reponse) ,'id_test': int(id_test) ,}
+            #serializerquestion=QuestionSerializer(data=dataquestion)
+            #if(serializerquestion.is_valid()):
+                  #serializerquestion.save()
+                  
+            serializer = QuestionReponseSerializer(data=data)
+            if serializer.is_valid():
+                  serializer.save()
+                  questionreponses.append(serializer.data)
+            
+                  
+    return Response(questionreponses, status=status.HTTP_200_OK)
+
+
+
 
 class Choix_UtilisateurListView(generics.ListAPIView):  # handles GETs for many Companies
       serializer_class = Choix_UtilisateurSerializer

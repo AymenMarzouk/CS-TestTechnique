@@ -53,3 +53,12 @@ class Choix_Utilisateur(models.Model):
     reponse_correcte = models.IntegerField(null=True)
     class Meta:
         unique_together = (('utilisateur', 'test','question','reponse'),)
+
+class QuestionReponse(models.Model):
+    id_test =models.IntegerField()
+    id_question= models.IntegerField()
+    question= models.CharField(max_length=1500)
+    poids  = models.IntegerField()
+    id_reponse= models.IntegerField()
+    reponse= models.CharField(max_length=1500)
+    reponse_correctes  = models.IntegerField()

@@ -19,13 +19,19 @@ from testdb import views
 
 router = routers.DefaultRouter()
 router.register(r'categories', views.CategorieViewSet, basename='Categorie')
+
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
     path('', include(router.urls)),
     path('tests', views.TestListView.as_view(), name="tests"),
+    path('testcreate', views.TestCreateView.as_view(), name="testcreate"),
     path('questions', views.QuestionListView.as_view(), name="questions"),
     path('reponses', views.ReponseListView.as_view(), name="reponses"),
+    path('reponse/', views.QuestionReponseView.as_view()),
+    path('reponsecreate/', views.ReponseCreateView.as_view()),
+    path('questionscreate', views.QuestionCreateView.as_view()),
+    path('questionsreponsecreate', views.QuestionReponseCreateView.as_view()),
     path('choix_utilisateur', views.Choix_UtilisateurListView.as_view(), name="choix_utilisateur"),
     path('utilisateur_test', views.Utilisateur_TestListView.as_view(), name="utilisateur_test"),
     path('utilisateur_testread', views.Utilisateur_TestreadListView.as_view(), name="utilisateur_test"),
