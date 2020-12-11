@@ -4,5 +4,6 @@ export class Test {
     description: string;
     nb_questions: number;
     nb_minutes: number;
+    score_min:number;
     Categorie: number;
  }

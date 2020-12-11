@@ -21,6 +21,8 @@ import { QuestionsService } from './services';
 import { HistoriquetestComponent } from './historiquetest/historiquetest.component';
 import { ScoreComponent } from './score/score.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { DetailtestComponent } from './detailtest/detailtest.component';
+import { DashboardadminComponent } from './dashboardadmin/dashboardadmin.component';
 
 
 
@@ -50,7 +52,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
       QuizComponent,
       HistoriquetestComponent,
       ScoreComponent,
-      DashboardComponent
+      DashboardComponent,
+      DetailtestComponent,
+      DashboardadminComponent
      
   ],
   providers: [

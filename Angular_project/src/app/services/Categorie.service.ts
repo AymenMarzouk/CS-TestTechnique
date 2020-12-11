@@ -44,13 +44,17 @@ export class CategorieService {
   }  
 
   // HttpClient API post() method => Create employee
-  createEmployee(employee): Observable<Categorie> {
-    return this.http.post<Categorie>(this.apiURL + '/categorie', JSON.stringify(Categorie), this.httpOptions)
+  createEmployee(categorie): Observable<Categorie> {
+    return this.http.post<Categorie>(this.apiURL + '/categorie', JSON.stringify(categorie), this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.handleError)
     )
-  }  
+  } 
+  
+  createCategorie(categorie: Categorie) {
+    return this.http.post(`${this.apiURL}/categories/`, categorie);
+  }
 
   // HttpClient API put() method => Update employee
   updateEmployee(id, employee): Observable<Categorie> {

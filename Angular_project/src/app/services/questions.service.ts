@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { Test } from '../models/Test';
 import { Question } from '../models/Question';
 import { Observable, throwError } from 'rxjs';
@@ -76,6 +76,21 @@ export class QuestionsService {
       catchError(this.handleError)
     )
   }
+
+  upload(file: File): Observable<HttpEvent<any>> {
+    const formData: FormData = new FormData();
+
+    formData.append('file', file);
+
+    const req = new HttpRequest('POST', `${this.apiURL}/questionscreate`, formData, {
+      reportProgress: true,
+      responseType: 'json'
+    });
+
+    return this.http.request(req);
+  }
+
+
 
   // Error handling 
   handleError(error) {

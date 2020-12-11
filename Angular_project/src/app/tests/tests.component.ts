@@ -35,4 +35,7 @@ loadTests() {
 getquestionsbyidtest(id:number){
   this.router.navigate(['/quiz', id]); 
 }
+getidtest(id:number){
+  this.router.navigate(['/test', id]); 
+}
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { Test } from '../models/Test';
 import { Reponse } from '../models/Reponse';
 import { Observable, throwError } from 'rxjs';
@@ -80,6 +80,19 @@ export class ReponsesService {
       retry(1),
       catchError(this.handleError)
     )
+  }
+
+  upload(file: File): Observable<HttpEvent<any>> {
+    const formData: FormData = new FormData();
+
+    formData.append('file', file);
+
+    const req = new HttpRequest('POST', `${this.apiURL}/reponsecreate/`, formData, {
+      reportProgress: true,
+      responseType: 'json'
+    });
+
+    return this.http.request(req);
   }
 
   // Error handling 

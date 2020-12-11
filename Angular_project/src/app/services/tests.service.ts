@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { Test } from '../models/Test';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
@@ -51,7 +51,7 @@ export class TestsService {
 
   // HttpClient API post() method => Create employee
   createEmployee(Test): Observable<Test> {
-    return this.http.post<Test>(this.apiURL + '/categorie', JSON.stringify(Test), this.httpOptions)
+    return this.http.post<Test>(this.apiURL + '/testcreate', JSON.stringify(Test), this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.handleError)
@@ -74,6 +74,20 @@ export class TestsService {
       retry(1),
       catchError(this.handleError)
     )
+  }
+
+
+  upload(file: File): Observable<HttpEvent<any>> {
+    const formData: FormData = new FormData();
+
+    formData.append('file', file);
+
+    const req = new HttpRequest('POST', `${this.apiURL}/questionsreponsecreate`, formData, {
+      reportProgress: true,
+      responseType: 'json'
+    });
+
+    return this.http.request(req);
   }
 
   // Error handling 
