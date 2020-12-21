@@ -172,6 +172,9 @@ class QuestionReponseCreateView(generics.CreateAPIView):
     
     values = []
     questionreponses=[]
+    test_ids=[]
+    datas=[]
+    
     for s in wb.sheets():
       #print 'Sheet:',s.name
         for row in range(1, s.nrows):
@@ -185,34 +188,91 @@ class QuestionReponseCreateView(generics.CreateAPIView):
                   except : pass
                   col_value.append((value))
             values.append(col_value)
-            print (values)
-            id_test = s.cell_value(row,0)
-            id_question = s.cell_value(row,1)
+            #print (values)
+            code_test = s.cell_value(row,0)
+            code_question = s.cell_value(row,1)
             question = s.cell_value(row,2)
             poids= s.cell_value(row,3)
-            id_reponse = s.cell_value(row,4)
+            code_reponse = s.cell_value(row,4)
             reponse = s.cell_value(row,5)
             reponse_correcte= s.cell_value(row,6)
-            nb_question_repondue=QuestionReponse.objects.values('question').distinct()
-            data = { 'question':  question ,'poids': str(poids),'reponse': reponse,'reponse_correctes': str(reponse_correcte),
-            'id_question': str(id_question),'id_reponse': str(id_reponse ),'id_test': str(id_test )}
+            #test_ids.append(id_test)
+            
+            data = { 'question':  question ,'poids': poids,'reponse': reponse,'reponse_correctes': reponse_correcte,
+            'code_question': code_question,'code_reponse': code_reponse ,'code_test': code_test }
+            datas.append(data)
+   
 
-            #queryset  = QuestionReponse.objects.raw(" select distinct id ,id_test , id_question ,question , id_reponse from public.testdb_questionreponse ")
-            #queryset1 = self.get_queryset ()
-            #print(result)
-            #serializer = QuestionReponseSerializer(list(queryset1))
-            #dataquestion=data = { 'question':  question ,'reponse': reponse ,'id_question': int(id_question),'id_reponse':  int(id_reponse) ,'id_test': int(id_test) ,}
-            #serializerquestion=QuestionSerializer(data=dataquestion)
-            #if(serializerquestion.is_valid()):
-                  #serializerquestion.save()
-                  
-            serializer = QuestionReponseSerializer(data=data)
-            if serializer.is_valid():
+    """output=[]
+    for id in test_ids :
+          if( id not in output):
+                output.append(id)"""
+    
+    question_reponse_byidtest =QuestionReponse.objects.all().delete()
+          
+    for d in datas:
+          serializer = QuestionReponseSerializer(data=d)
+          if serializer.is_valid():
                   serializer.save()
                   questionreponses.append(serializer.data)
+    
+
+    delete_question= QuestionReponse.objects.values('code_test').distinct()
+    for dq in delete_question:
+          #print('this is dq :' +str(dq))
+          test_id=Test.objects.values('id').filter(code_test=dq['code_test'])[0]
+          
+          question_list_id=Question.objects.filter(test_id=test_id['id'])
+          print(question_list_id)
+          for qlid in question_list_id:
+                #print(int(qlid))
+                Reponse.objects.filter(question_id=qlid).delete()
+
+          Question.objects.filter(test_id=test_id['id']).delete()
+
+
+    
+
+    qr=QuestionReponse.objects.values_list('code_test','code_question','question','poids').distinct()
+    for q in qr:
+            #print(q[1])
+            test_id=Test.objects.values('id').filter(code_test=q[0])[0]
+            data = {'texte': q[2],'poids': q[3], 'test':  test_id['id'] ,'code_question':q[1]}
+            print(data)
+            
+            serializer = QuestionSerializer(data=data)
+            if serializer.is_valid():
+                  serializer.save()
+                  #questionreponses.append(serializer.data)
+
+    rs=QuestionReponse.objects.values_list('code_reponse','reponse','reponse_correctes','code_question')
+    for r in rs:
+            #print(r[1])
+            question_id=Question.objects.values('id').filter(code_question=r[3])[0]
+            data = {'texte': r[1],'reponse_correcte': r[2], 'question':  question_id['id'],'code_reponse':  r[0]}
+            #data = {'texte': text ,'reponse_correcte': reponse_correcte, 'question':  int(question) }
+            #print(data)
+            
+            serializer = ReponseSerializer(data=data)
+            if serializer.is_valid():
+                  serializer.save()
+                  #questionreponses.append(serializer.data)
+
+
+            
+
+
+            #nb_question_repondue=QuestionReponse.objects.values_list('id_test','id_question').distinct()
+            #print(nb_question_repondue)
+            #choix_utilisateur = QuestionReponse.objects.filter(id_test=id_test,id_question=id_question,id_reponse=id_reponse,) 
+            #for qr  in   questionreponses:
+                 #if choix_utilisateur.exists():
+                    #choix_utilisateur.delete()      
             
                   
-    return Response(questionreponses, status=status.HTTP_200_OK)
+            
+                  
+    return Response(serializer.errors, status=status.HTTP_200_OK)
 
 
 

@@ -38,7 +38,7 @@ class TestSerializer(ModelSerializer):
     class Meta:
         model = Test
         fields = (
-            'id', 'titre', 'description', 'nb_questions', 'nb_minutes', 'categorie'
+            'id', 'code_test','titre', 'description', 'nb_questions', 'nb_minutes', 'categorie'
         )
         depth = 1
 
@@ -46,7 +46,7 @@ class TestcreateSerializer(ModelSerializer):
     class Meta:
         model = Test
         fields = (
-            'id', 'titre', 'description', 'nb_questions', 'nb_minutes', 'categorie'
+            'id', 'titre', 'description', 'nb_questions', 'nb_minutes', 'categorie', 'code_test'
         )
                 
 
@@ -75,13 +75,13 @@ class QuestionSerializer(ModelSerializer):
     class Meta:
         model = Question
         fields = (
-            'id', 'texte', 'poids', 'test'
+            'id', 'texte', 'poids', 'test','code_question'
         )
 class ReponseSerializer(ModelSerializer):
     class Meta:
         model = Reponse
         fields = (
-            'id', 'texte', 'reponse_correcte', 'question'
+            'id', 'texte', 'reponse_correcte', 'question','code_reponse'
         )
 class Choix_UtilisateurSerializer(ModelSerializer):
     class Meta:
@@ -94,5 +94,5 @@ class QuestionReponseSerializer(ModelSerializer):
     class Meta:
         model = QuestionReponse
         fields =(
-            'id', 'id_test', 'id_question', 'question','id_reponse','reponse','poids','reponse_correctes'
+            'id', 'code_test', 'code_question', 'question','code_reponse','reponse','poids','reponse_correctes'
             )        

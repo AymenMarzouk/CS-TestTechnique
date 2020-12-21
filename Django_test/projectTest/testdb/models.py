@@ -7,6 +7,7 @@ class Categorie(models.Model):
         return self.titre
 
 class Test(models.Model):
+    code_test = models.CharField(max_length=100)
     titre = models.CharField(max_length=500)
     description = models.CharField(max_length=1500)
     nb_questions = models.IntegerField() 
@@ -37,11 +38,13 @@ class Utilisateur_Test(models.Model):
        
 
 class Question(models.Model):
+    code_question = models.CharField(max_length=100)
     texte = models.CharField(max_length=1500)
     poids  = models.IntegerField(default=1) 
     test = models.ForeignKey(Test, on_delete=models.CASCADE)
 
 class Reponse(models.Model):
+    code_reponse = models.CharField(max_length=100)
     texte = models.CharField(max_length=1500)
     reponse_correcte  = models.IntegerField()
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
@@ -55,10 +58,10 @@ class Choix_Utilisateur(models.Model):
         unique_together = (('utilisateur', 'test','question','reponse'),)
 
 class QuestionReponse(models.Model):
-    id_test =models.IntegerField()
-    id_question= models.IntegerField()
+    code_test = models.CharField(max_length=100)
+    code_question= models.CharField(max_length=100)
     question= models.CharField(max_length=1500)
     poids  = models.IntegerField()
-    id_reponse= models.IntegerField()
+    code_reponse= models.CharField(max_length=100)
     reponse= models.CharField(max_length=1500)
     reponse_correctes  = models.IntegerField()
