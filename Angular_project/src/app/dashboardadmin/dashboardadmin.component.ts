@@ -53,7 +53,7 @@ export class DashboardadminComponent implements OnInit {
     nb_minutes: ['',Validators.required],
     score_min: ['',Validators.required],
     categorie: ['',Validators.required],
-   
+    code_test: ['',Validators.required],
   
 }, );
   }
@@ -122,6 +122,7 @@ onSubmitTest() {
       .subscribe(
        
           data  => {
+            this.loadTests()
             this.registerFormTest.reset();
              alert("Ajout avec success");
           },
@@ -135,51 +136,6 @@ selectFile(event) {
   this.selectedFiles = event.target.files;
 }
 
-upload() {
-  this.progress = 0;
-
-  this.currentFile = this.selectedFiles.item(0);
-  this.questionservice.upload(this.currentFile).subscribe(
-    event => {
-      if (event.type === HttpEventType.UploadProgress) {
-        this.progress = Math.round(100 * event.loaded / event.total);
-      } else if (event instanceof HttpResponse) {
-        this.message = event.body.message;
-        this.message = 'ajout avec success';
-        
-      }
-    },
-    err => {
-      this.progress = 0;
-      this.message = 'Could not upload the file!';
-      this.currentFile = undefined;
-    });
-
-  this.selectedFiles = undefined;
-}
-
-uploadreponse() {
-  this.progress1 = 0;
-
-  this.currentFile = this.selectedFiles.item(0);
-  this.reponseservice.upload(this.currentFile).subscribe(
-    event => {
-      if (event.type === HttpEventType.UploadProgress) {
-        this.progress1 = Math.round(100 * event.loaded / event.total);
-      } else if (event instanceof HttpResponse) {
-        this.messagereponse = event.body.message;
-        this.messagereponse = 'ajout avec success';
-        
-      }
-    },
-    err => {
-      this.progress1 = 0;
-      this.messagereponse = 'Could not upload the file!';
-      this.currentFile = undefined;
-    });
-
-  this.selectedFiles = undefined;
-}
 
 
 uploadquestionreponse() {
@@ -191,6 +147,7 @@ uploadquestionreponse() {
       if (event.type === HttpEventType.UploadProgress) {
         this.progress1 = Math.round(100 * event.loaded / event.total);
       } else if (event instanceof HttpResponse) {
+        this.loadQuestions()
         this.messagequestionreponse = event.body.message;
         this.messagequestionreponse = 'ajout avec success';
         
